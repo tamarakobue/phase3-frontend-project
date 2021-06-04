@@ -13,11 +13,12 @@ const Classrooms = () => {
         .then(res => res.json())
         .then(data =>
             setClassrooms(data))
+            console.log(classrooms)
     }, [])
 
     const classroomsList = classrooms.map(c => 
     <Link to={`/classrooms/${c.id}`}>
-        <li key={c.id} classname="classlist-li">
+        <li key={c.id}>
             {c.teacher_name}  -  {c.title}
             </li>
             </Link>)

@@ -1,32 +1,43 @@
-import React, {useEffect, useState} from 'react'
+import React, { Component } from 'react'
 
-const ClassForm = ({addANewClassroom}) => {
-    const [title, setTitle] = useState('')
-    const [teacherName, setTeacherName] = useState('')
-
-  const handleChange = (e) => {
-        setTitle(e.target.value)
-        setTeacherName(e.target.value)
+class ClassForm extends Component {
+    state = {
+        title: '',
+        teacher_name: ''
     }
 
-  const handleSubmit = (e) => {
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    handleTeacherChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
         e.preventDefault()
-        addANewClassroom(title, teacherName)
+        this.props.addANewClassroom(this.state)
     }
 
-    return (
-        <div>
-            <h1 className='class-form'>Classroom Form</h1>
-            <hr />
-            <form onSubmit={handleSubmit}>
-                <label>Title:  </label>
-                <input type='text' title='title' value='title' onChange={handleChange}/>
-                <label>Teacher's Name:  </label>
-                <input type='text' teacherName='teacher_name' value='teacherName' onChange={handleChange}/>
-                <br />
-                <input type='submit'/>
-            </form>
-        </div>
-    )
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>Class Title: </label> <br/>
+                    <input type='text' name='title' value={this.state.title} onChange={this.handleChange} />
+                    <br/>
+                    <br/>
+                    <label>Teacher's Name: </label> <br/>
+                    <input type='text' name='teacher_name' value={this.state.teacher_name} onChange={this.handleTeacherChange} />
+                    <input type='submit' />
+                </form>
+            </div>
+        )
+    }
 }
 export default ClassForm
