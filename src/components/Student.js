@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Student extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Student</h1>
-            </div>
-        )
-    }
+const Student = (props) => {
+    return (
+        <div>
+           Name: {props.student.first_name} {props.student.last_name}, 
+           Age: {props.student.age}
+        </div>
+    )
 }
 export default Student
